@@ -1,0 +1,145 @@
+# MORTUUS TERRA - Post-Nuclear Survival
+# 
+# World Border Event: wrap, radiation, or lightning
+# World Spawn Type: random or fixed
+# Option: Radiation inside buildings (at reduced amount)
+# 
+
+settings:
+  worlds:
+    enabled: world,world2
+    border:
+      enabled: true
+      size: 2000
+      event: wrap
+    spawn:
+      type: random
+      protection-range: 50
+  additional-features:
+    thirst:
+      enabled: true
+    droughts:
+      enabled: true
+      chance: 0.1
+      min-length: 1
+      max-length: 5      
+  chat:
+    chat-features-enabled: true
+    clear-chat-range: 75
+    garbled-chat-range: 125
+  auto-generation:
+    fallout-shelters:
+      enabled: true
+      chance: 0.001
+    craters:
+      enabled: true
+      chance: 0.001
+      nukes:
+        admin:
+          enabled: true 
+        player:
+          enabled: true 
+          chance: 0.35
+  supply-drops:
+    enabled: true
+    supply-drop-chance: .05
+    items:
+      0:
+        item-id: 319
+        quantity: 8
+        chance: 0.80
+      1:
+        item-id: 295
+        quantity: 32
+        chance: 0.75
+      2:
+        item-id: 296
+        quantity: 32
+        chance: 0.60
+      3:
+        item-id: 297
+        quantity: 8
+        chance: 0.50
+      4:
+        item-id: 361
+        quantity: 8
+        chance: 0.40
+      5:
+        item-id: 362
+        quantity: 8
+        chance: 0.40
+      6:
+        item-id: 267
+        quantity: 2
+        chance: 0.30
+      7:
+        item-id: 276
+        quantity: 1
+        chance: 0.20
+      8:
+        item-id: 277
+        quantity: 2
+        chance: 0.20
+      9:
+        item-id: 278
+        quantity: 2
+        chance: 0.20
+      10:
+        item-id: 289
+        quantity: 16
+        chance: 0.25
+      11:
+        item-id: 306
+        quantity: 1
+        chance: 0.20
+      12:
+        item-id: 307
+        quantity: 1
+        chance: 0.20
+      13:
+        item-id: 308
+        quantity: 1
+        chance: 0.20
+      14:
+        item-id: 309
+        quantity: 1
+        chance: 0.20
+      15:
+        item-id: 310
+        quantity: 1
+        chance: 0.10
+      16:
+        item-id: 311
+        quantity: 1
+        chance: 0.10
+      17:
+        item-id: 312
+        quantity: 1
+        chance: 0.10
+      18:
+        item-id: 313
+        quantity: 1
+        chance: 0.10
+      19:
+        item-id: 322
+        quantity: 4
+        chance: 0.05
+      20:
+        item-id: 264
+        quantity: 32
+        chance: 0.02
+  survival-kits:
+    enabled: true
+    hours-between-kits: 1
+  radiation:
+    enabled: true
+    maximum: 50.0
+    nuclear-weather:
+      lightning:
+        enabled: true
+        strike-chance: 0.03
+    damage:
+      damage-chance:
+        base: 0.0
+        increase-from-water: 5.0
+        increase-from-storms: 10.0

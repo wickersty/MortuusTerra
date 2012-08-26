@@ -1,0 +1,50 @@
+name: MortuusTerra
+main: me.wickersty.mortuusterra.MortuusTerra
+version: 3.10
+author: wickersty
+depends: [Vault]
+softdepend: [MultiVerse,Multiverse-Core,My Worlds]
+database: false
+description: >
+             The core plugin for the Mortuus Terra survival server.
+             Additional Modules:
+             There are many additional modules to add functionality to Mortuus Terra. See the
+             Mortuus Terra BukkitDev page at dev.bukkit.org/server-mods/mortuus-terra
+             Features:
+                 - Radiation
+                   - Decreasing Radiation Over Time
+                   - Geiger Counters
+                   - Nuclear Weather Effects
+                   - Rad Suits
+                   - GECKs (Radiation Shields)
+                   - Craters
+                 - Player-Crafted Nukes
+                 - Fallout Shelters
+                 - World Bordering
+                 - Spawn Control
+commands:
+  mt:
+    description: The core Mortuus Terra command.
+    aliases: 
+    permission:
+    usage: /mt help
+  ?:
+    description: Shows information about player and environment
+    alias: 
+    permission: 
+    usage: /?
+  spawn:
+    description: Go to spawn
+    aliases: 
+    permission:
+    usage: /spawn
+  a:
+    description: Simple Admin Chat
+    aliases: 
+    permission:
+    usage: /a <message>
+  rads:
+    description: Check current radiation levels
+    aliases: 
+    permission:
+    usage: /rads
