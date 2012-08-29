@@ -103,6 +103,8 @@ public class SpawnListener implements Listener {
 		
 		if (entity.getLocation().distance(entity.getWorld().getSpawnLocation()) <= instance.getConfigManager().spawnProtectionRange) {
 
+			// instance.getLogger().info(entity.getClass().toString());
+			
 			if (
 					entity instanceof Blaze || 
 					entity instanceof CaveSpider || 
@@ -127,6 +129,8 @@ public class SpawnListener implements Listener {
 					entity instanceof Wolf || 
 					entity instanceof Zombie 
 				) {
+				
+				// instance.getLogger().info("Cancelling Spawn of: " + entity.toString());
 			
 				entity.remove();
 				
