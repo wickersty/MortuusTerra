@@ -7,7 +7,11 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+
+import com.massivecraft.factions.FPlayer;
+
 import me.wickersty.mortuusterra.MortuusTerra;
 import me.wickersty.mortuusterra.objects.PlayerObject;
 
@@ -95,6 +99,37 @@ public class CommandManager {
 			if (args.length == 0) {
 				
 				return;
+				
+			}
+
+			if (args[0].equalsIgnoreCase("test")) {
+				
+				List<Entity> nearbyEntities = sender.getNearbyEntities(25.0, 25.0, 25.0);
+				
+				instance.getLogger().info("Nearby Entities: " + nearbyEntities.size() );
+				
+				if (nearbyEntities.size() == 1) {
+					
+					instance.getLogger().info(ChatColor.DARK_RED + "[MT Factions] " + ChatColor.WHITE + "There are no other Faction members near your Security Terminal.");
+					
+				}
+
+				for (Entity nearbyEntity : nearbyEntities) {
+
+					if (nearbyEntity instanceof Player) {
+					
+						Player nearbyPlayer = (Player) nearbyEntity;
+						FPlayer nearbyFactionPlayer = (FPlayer) nearbyPlayer;
+						
+						if (nearbyFactionPlayer.hasFaction() == true) {
+						
+							instance.getLogger().info(ChatColor.DARK_RED + "[MT Factions] " + ChatColor.WHITE + "A member of " + nearbyFactionPlayer.getTag() + " is near your Security Terminal.");
+						
+						}
+					
+					}
+
+				}
 				
 			}
 			

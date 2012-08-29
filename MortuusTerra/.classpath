@@ -6,5 +6,7 @@
 	<classpathentry kind="lib" path="/Users/wickersty/Documents/workspace/JARs/Bukkit/Vault.jar"/>
 	<classpathentry kind="lib" path="/Users/wickersty/Documents/workspace/JARs/MTElectricity.jar"/>
 	<classpathentry kind="lib" path="/Users/wickersty/Documents/workspace/JARs/MTZombies.jar"/>
+	<classpathentry kind="lib" path="/Users/wickersty/Documents/workspace/JARs/Bukkit/Factions.jar"/>
+	<classpathentry kind="lib" path="/Users/wickersty/Documents/workspace/JARs/MTUtilities.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
