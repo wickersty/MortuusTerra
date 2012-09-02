@@ -1,6 +1,6 @@
 name: MortuusTerra
 main: me.wickersty.mortuusterra.MortuusTerra
-version: 3.10
+version: 3.11
 author: wickersty
 depends: [Vault]
 softdepend: [MultiVerse,Multiverse-Core,My Worlds]
@@ -43,8 +43,3 @@ commands:
     aliases: 
     permission:
     usage: /a <message>
-  rads:
-    description: Check current radiation levels
-    aliases: 
-    permission:
-    usage: /rads

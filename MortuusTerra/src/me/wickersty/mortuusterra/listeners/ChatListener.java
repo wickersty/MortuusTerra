@@ -1,22 +1,24 @@
 package me.wickersty.mortuusterra.listeners;
 
-// import java.util.HashSet;
-// import java.util.Set;
+import java.util.HashSet;
+import java.util.Set;
+
 import me.wickersty.mortuusterra.MortuusTerra;
-/*
-import me.wickersty.mortuusterra.events.MTPlayerChatEvent;
+
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-*/
 import org.bukkit.event.Listener;
-// import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+
+import com.massivecraft.factions.FPlayer;
+import com.massivecraft.factions.FPlayers;
+import com.massivecraft.factions.struct.ChatMode;
 
 public class ChatListener implements Listener {
 
-	@SuppressWarnings("unused")
 	private final MortuusTerra instance;
 	
 	public ChatListener(MortuusTerra instance) {
@@ -25,9 +27,8 @@ public class ChatListener implements Listener {
 		
 	}
 	
-	/*
-	@EventHandler(priority=EventPriority.HIGHEST)
-	public void playerSpeaks(PlayerChatEvent event) {
+	@EventHandler(priority=EventPriority.LOWEST)
+	public void playerSpeaks(AsyncPlayerChatEvent event) {
 		
 		if (instance.getConfigManager().chatFeaturesEnabled == false) {
 			
@@ -47,64 +48,49 @@ public class ChatListener implements Listener {
 				
 			}
 
+			
+			
+			// do we have factions installed?
+			if (instance.getServer().getPluginManager().isPluginEnabled("Factions") == true) {
+				
+				// handle chat interruption with respect to Factions
+				FPlayer fPlayer = FPlayers.i.get(event.getPlayer());
+
+				if (!fPlayer.getChatMode().equals(ChatMode.PUBLIC)) {
+					
+					// if the Faction Player is NOT in Public Chat Mode, relinquish control
+					return;
+					
+				}
+				
+			}
+			
+
 		    
 		    // where is this message coming from?
 			if (instance.getConfigManager().isWorldEnabled(senderWorld.getName()) == true) {
 				
-				instance.getLogger().info("PlayerChatEvent From Enabled World");
-	
-			    // Create the event here
-				MTPlayerChatEvent playerChatEvent = new MTPlayerChatEvent(sender);
-	
-				playerChatEvent.setMessage(event.getMessage());
-				playerChatEvent.setRecipients(recipients);
-	
-				// Call the event
-			    instance.getServer().getPluginManager().callEvent(playerChatEvent);
-	
-				// from enabled world, so cancel the event and handle with custom code
-				// event.setCancelled(true);
+				// cancel the event
+				event.setCancelled(true);
 				
-				// prep the message
+				
+				
+				// prepare the message
 				String message = ChatColor.DARK_AQUA + sender.getName() + ": " + ChatColor.GRAY + event.getMessage();
 				
-	
-				
-				
-				if (!(playerChatEvent.getMessage().equalsIgnoreCase(""))) {
+				// do we have factions installed?
+				if (instance.getServer().getPluginManager().isPluginEnabled("Factions") == true) {
+
+					FPlayer fPlayer = FPlayers.i.get(event.getPlayer());
 					
-					if (playerChatEvent.getMessageAction() == null) {
+					if (!fPlayer.getTag().equalsIgnoreCase("")) {
+					
+						message = ChatColor.WHITE + "{" + fPlayer.getTag() +  "} " + message;
 						
-						playerChatEvent.setMessageAction("nothing");
-						
-					}
-	
-					if (playerChatEvent.getMessageAction().equalsIgnoreCase("replace")) {
-	
-						message = sender.getName() + ": " + ChatColor.GRAY + playerChatEvent.getMessage();
-						
-					} else if (playerChatEvent.getMessageAction().equalsIgnoreCase("supress")) {
-						
-						event.setCancelled(true);
-						
-						return;
-	
-					} else if (playerChatEvent.getMessageAction().equalsIgnoreCase("nothing")) {
-	
-						// nothing
-						
-					} else if (playerChatEvent.getMessageAction().equalsIgnoreCase("prefix")) {
-						
-						// nothing
-	
 					}
 					
 				}
-	
-				
-				
-				message = playerChatEvent.getMessagePrefix() + ChatColor.WHITE + event.getPlayer().getName() + ": " + ChatColor.GRAY + playerChatEvent.getMessage();
-				
+
 				// remove recipients from the list who are in worlds other than the sender's
 				Set<Player> recipientsToDelete = new HashSet<Player>();
 				
@@ -122,55 +108,52 @@ public class ChatListener implements Listener {
 					
 					recipients.remove(recipientToDelete);
 					
-				}
-								
+				}					
+				
 				
 				// our recipients list now contains only players from within the same world as the sender
+				int recipientsReceived = 0;
 				for (Player recipient : recipients) {
-	
-					instance.getLogger().info("Chat Local: " + playerChatEvent.getChatLocal().toString());
 					
-					if (playerChatEvent.getChatLocal() == true) {
+					//  (local chat)
+					if (recipient.getLocation().distance(sender.getLocation()) <= instance.getConfigManager().clearChatRange) {
 						
-						// not from another plugin (local chat)
-						if (recipient.getLocation().distance(sender.getLocation()) <= instance.getConfigManager().clearChatRange) {
-							
-							// recipient receives clear message					
-							recipient.sendMessage(message);
-													
-						} else if (recipient.getLocation().distance(sender.getLocation()) <= instance.getConfigManager().garbledChatRange) { 
-							
-							// recipient receives garbled message
-							String thisMessage = message;
-							thisMessage.replace("a", "#");
-							thisMessage.replace("e", " ");
-							thisMessage.replace("i", "#");
-							thisMessage.replace("o", ".");
-							thisMessage.replace("u", "#");
-							thisMessage.replace("y", " ");
-		
-							recipient.sendMessage(ChatColor.WHITE + sender.getName() + ChatColor.GRAY + " says: " + thisMessage);					
-							
-						} else {
-							
-							// recipient receives no message
-							
-						}					
+						// recipient receives clear message					
+						recipient.sendMessage(message);
+						
+						recipientsReceived++;						
+												
+					} else if (recipient.getLocation().distance(sender.getLocation()) <= instance.getConfigManager().garbledChatRange) { 
+						
+						// recipient receives garbled message
+						String thisMessage = message;
+						thisMessage.replace("a", "#");
+						thisMessage.replace("e", " ");
+						thisMessage.replace("i", "#");
+						thisMessage.replace("o", ".");
+						thisMessage.replace("u", "#");
+						thisMessage.replace("y", " ");
+	
+						recipient.sendMessage(ChatColor.WHITE + sender.getName() + ChatColor.GRAY + " says: " + thisMessage);
+						
+						recipientsReceived++;
 						
 					} else {
 						
-						// from another plugin module
-						recipient.sendMessage(message);					
-		
-					}
-				
+						// recipient receives no message
+						
+					}	
+					
 				}
 				
-				
+				if (recipientsReceived <= 1) {
+					
+					sender.sendMessage(ChatColor.GRAY + "No one can hear you.");
+					
+				}
+									
 			} else {
 	
-				instance.getLogger().info("PlayerChatEvent From Non-Enabled World");
-				
 				// from non-enabled world, so remove players from recipients list that are in enabled worlds
 				// and let the event play out by itself
 
@@ -205,6 +188,5 @@ public class ChatListener implements Listener {
 		}
 		
 	}
-	*/
 	
 }

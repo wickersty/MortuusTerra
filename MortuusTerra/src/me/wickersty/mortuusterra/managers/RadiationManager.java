@@ -81,6 +81,12 @@ public class RadiationManager {
 				}
 				
 			}
+			
+			if (player.getLocation().distance(player.getWorld().getSpawnLocation()) <= instance.getConfigManager().spawnProtectionRange) {
+				
+				radDamageReceived = 0.0;
+				
+			}
 						
 			if (radDamageReceived < 0.0) {
 				
@@ -144,6 +150,16 @@ public class RadiationManager {
 			armorAbsorbs = true;
 			
 			armor[whichArmor].setDurability((short)(armor[whichArmor].getDurability() + 2));
+			
+		}
+		
+		if (armor[whichArmor].getType().name().contains("GOLD")) {
+			
+			if (Math.random() > 0.25) {
+				
+				return armorAbsorbs = true;
+				
+			}
 			
 		}
 
