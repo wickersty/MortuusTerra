@@ -42,6 +42,12 @@ public class PlayerListener implements Listener {
 			
 		}
 		
+		if (instance.getConfigManager().newbieProtectionEnabled == false) {
+			
+			return;
+			
+		}
+		
 		if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
 			
 			Player attacker = (Player) event.getDamager();

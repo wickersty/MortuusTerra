@@ -16,6 +16,8 @@ settings:
       type: random
       protection-range: 50
   additional-features:
+    newbie-protection:
+      enabled: true
     thirst:
       enabled: true
     droughts:

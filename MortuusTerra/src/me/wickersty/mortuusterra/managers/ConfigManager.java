@@ -27,6 +27,7 @@ public class ConfigManager {
 	
 	// additional features
 	public boolean thirstEnabled;
+	public boolean newbieProtectionEnabled;
 	
 	// droughts
 	public boolean droughtsEnabled;
@@ -130,7 +131,8 @@ public class ConfigManager {
 		
 		// additional features
 		thirstEnabled = config.getBoolean("settings.additional-features.thirst.enabled");
-		
+		newbieProtectionEnabled = config.getBoolean("settings.additional-features.newbie-protection.enabled");
+				
 		// droughts
 		droughtsEnabled = config.getBoolean("settings.additional-features.droughts.enabled");
 		droughtsChance = config.getDouble("settings.additional-features.droughts.chance");
