@@ -1,6 +1,6 @@
 name: MortuusTerra
 main: me.wickersty.mortuusterra.MortuusTerra
-version: 3.11
+version: 3.12
 author: wickersty
 depends: [Vault]
 softdepend: [MultiVerse,Multiverse-Core,My Worlds]
