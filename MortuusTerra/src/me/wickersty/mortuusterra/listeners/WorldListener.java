@@ -320,7 +320,7 @@ public class WorldListener implements Listener {
 		instance.getWorldManager().drought.daysSinceDrought++;
 
 		// if drought length is same as days passed, end drought
-		if (instance.getWorldManager().drought.getDroughtLength() == instance.getWorldManager().drought.daysSinceDrought) {
+		if (instance.getWorldManager().drought.getDroughtLength() >= instance.getWorldManager().drought.daysSinceDrought) {
 			
 			instance.getWorldManager().drought.endDrought();
 			
