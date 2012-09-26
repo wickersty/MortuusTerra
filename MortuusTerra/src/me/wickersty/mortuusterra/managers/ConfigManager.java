@@ -39,6 +39,7 @@ public class ConfigManager {
 	public boolean chatFeaturesEnabled;
 	public Integer clearChatRange;
 	public Integer garbledChatRange;
+	public boolean disableMeCommand;
 
 	// spawn
 	public String spawnType;
@@ -147,7 +148,8 @@ public class ConfigManager {
 		chatFeaturesEnabled = config.getBoolean("settings.chat.chat-features-enabled");
 		clearChatRange = config.getInt("settings.chat.clear-chat-range");
 		garbledChatRange = config.getInt("settings.chat.garbled-chat-range");
-		
+		disableMeCommand = config.getBoolean("settings.chat.disable-me-command");
+
 		// fallout shelters
 		generateFalloutSheltersEnabled = config.getBoolean("settings.auto-generation.fallout-shelters.enabled");
 		generateFalloutSheltersChance = config.getDouble("settings.auto-generation.fallout-shelters.chance");

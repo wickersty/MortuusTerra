@@ -140,8 +140,16 @@ public class PlayerListener implements Listener {
 	public void playerBioCheck(PlayerMoveEvent event) {
 		
 		// udpate player health, hunger, and thirst
-		instance.getPlayerManager().getPlayerObjectByPlayerName(event.getPlayer().getName()).health = event.getPlayer().getHealth();
-		instance.getPlayerManager().getPlayerObjectByPlayerName(event.getPlayer().getName()).hunger = event.getPlayer().getFoodLevel();
+		PlayerObject playerObject = instance.getPlayerManager().getPlayerObjectByPlayerName(event.getPlayer().getName());
+		
+		if (playerObject == null) {
+			
+			return;
+			
+		}
+	
+		playerObject.health = event.getPlayer().getHealth();
+		playerObject.hunger = event.getPlayer().getFoodLevel();
 
 		if (instance.getConfigManager().thirstEnabled == false) {
 			
@@ -149,7 +157,7 @@ public class PlayerListener implements Listener {
 			
 		}
 		
-		instance.getPlayerManager().getPlayerObjectByPlayerName(event.getPlayer().getName()).calculateThirst(event.getPlayer().getWorld().getFullTime());
+		playerObject.calculateThirst(event.getPlayer().getWorld().getFullTime());
 		
 	}
 	

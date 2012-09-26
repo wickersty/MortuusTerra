@@ -29,6 +29,7 @@ settings:
     chat-features-enabled: true
     clear-chat-range: 75
     garbled-chat-range: 125
+    disable-me-command: true
   auto-generation:
     fallout-shelters:
       enabled: true

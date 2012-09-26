@@ -27,6 +27,16 @@ public class CommandManager {
 
 	public void processCommand(Player sender, Command cmd, String[] args) {
 
+		if (instance.getConfigManager().disableMeCommand == true) {
+
+			if (cmd.getName().equalsIgnoreCase("me")) {
+
+				
+				
+			}
+			
+		}
+		
 		if (cmd.getName().equalsIgnoreCase("?")) {
 
 			if (args.length == 0) {
