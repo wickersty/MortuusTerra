@@ -7,9 +7,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.bukkit.ChatColor;
 import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
-
 import me.wickersty.mortuusterra.MortuusTerra;
 import me.wickersty.mortuusterra.objects.PlayerObject;
 
@@ -195,6 +196,48 @@ public class PlayerManager {
 		
 		return playerOutOfBounds;
 	
+	}
+
+	public void startTimedTeleport(final Player player, final Location teleportLocation) {
+		
+		final Location startingLocation = new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ());
+
+		player.sendMessage(ChatColor.AQUA + "Teleporting in 5 seconds. Do not move.");
+
+		instance.getServer().getScheduler().scheduleSyncDelayedTask(instance, new Runnable() {
+
+		   public void run() {
+			
+			   instance.getLogger().info("Teleport Player if Unmoved: " + player.getName());
+
+			   teleportPlayerIfUnmoved(player, startingLocation, teleportLocation);
+
+		   }
+			   
+		}, 60L);
+		
+	}
+
+	public void teleportPlayerIfUnmoved(Player player, Location startingLocation, Location teleportLocation) {
+
+		instance.getLogger().info("B");
+
+		if (!startingLocation.getWorld().equals(player.getWorld()) || startingLocation.getX() != player.getLocation().getX() || startingLocation.getY() != player.getLocation().getY() || startingLocation.getZ() != player.getLocation().getZ()) {
+			
+			instance.getLogger().info("Moved");
+
+			player.sendMessage(ChatColor.AQUA + "You moved, so your teleportation request was cancelled.");
+			
+		} else {
+		
+			instance.getLogger().info("Unmoved");
+
+			player.sendMessage(ChatColor.AQUA + "Teleporting...");
+
+			player.teleport(teleportLocation);
+			
+		}
+		
 	}
 	
 }

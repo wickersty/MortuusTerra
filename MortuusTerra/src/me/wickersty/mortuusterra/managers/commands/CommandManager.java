@@ -64,13 +64,13 @@ public class CommandManager {
 			}
 			
 		}
-
+		
 		if (cmd.getName().equalsIgnoreCase("spawn")) {
 
 			if (instance.getConfigManager().isWorldEnabled(sender.getWorld().getName()) == true) {
 			
-				sender.teleport(sender.getWorld().getSpawnLocation());
-				
+				instance.getPlayerManager().startTimedTeleport(sender, sender.getWorld().getSpawnLocation());
+
 			}
 			
 		}

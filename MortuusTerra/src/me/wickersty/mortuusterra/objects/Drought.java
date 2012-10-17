@@ -21,7 +21,7 @@ public class Drought {
 		this.daysSinceDrought = 0;
 
 		Random randomInt = new Random();
-		this.droughtLength = randomInt.nextInt(instance.getConfigManager().droughtsMaxLength);
+		this.droughtLength = randomInt.nextInt(instance.getConfigManager().droughtsMaxLength) + 1;
 
 		if (droughtActive == true) {
 		
