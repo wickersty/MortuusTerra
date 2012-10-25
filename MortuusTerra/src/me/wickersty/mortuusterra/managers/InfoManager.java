@@ -35,18 +35,6 @@ public class InfoManager {
 		Double radiationLevel = instance.getRadiationManager().calculateRadiationDamage(player);
 		String playerCoords = xI + "," + yI + "," + zI;
 
-		String drought = "";
-		if (instance.getWorldManager().drought.getDroughtActive() == true) {
-
-			drought = (instance.getWorldManager().drought.droughtLength - instance.getWorldManager().drought.daysSinceDrought + 1) + " Days Remaining";
-			
-		} else {
-			
-			drought = "None";
-			
-		}
-
-		
 		// display player info
 		player.sendMessage(ChatColor.DARK_RED + player.getName());
 		player.sendMessage(ChatColor.WHITE + "Health: " + ChatColor.GRAY + health + ChatColor.WHITE + " | Hunger: " + ChatColor.GRAY + hunger + ChatColor.WHITE + " | Thirst: " + ChatColor.GRAY + thirst);
@@ -59,11 +47,6 @@ public class InfoManager {
 			player.sendMessage(ChatColor.GRAY + effect.getName());
 			
 		}
-		
-		player.sendMessage("");
-		player.sendMessage(ChatColor.DARK_RED + "Environment:");
-		player.sendMessage(ChatColor.WHITE + "Drought: " + ChatColor.GRAY + drought);
-		
 	}
 	
 	

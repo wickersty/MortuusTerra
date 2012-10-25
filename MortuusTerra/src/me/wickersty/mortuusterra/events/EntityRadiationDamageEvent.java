@@ -10,6 +10,8 @@ public class EntityRadiationDamageEvent extends Event implements Cancellable {
    private static final HandlerList handlers = new HandlerList();
 
    private Double radiationDamageReceived;
+   private boolean containsWaterBasedRadiation;
+   private boolean containsStormBasedRadiation;
    private Player player;
    private Boolean cancelled;
 
@@ -32,6 +34,30 @@ public class EntityRadiationDamageEvent extends Event implements Cancellable {
 	   
    }
    
+   public boolean containsWaterBasedRadiation() {
+	   
+	   return containsWaterBasedRadiation;
+	   
+   }
+   
+   public boolean containsStormBasedRadiation() {
+	   
+	   return containsStormBasedRadiation;
+	   
+   }
+      
+   public void setContainsWaterBasedRadiation(Boolean containsWaterBasedRadiation) {
+	   
+	   this.containsWaterBasedRadiation = containsWaterBasedRadiation;
+	   
+   }
+   
+   public void setContainsStormBasedRadiation(Boolean containsStormBasedRadiation) {
+	   
+	   this.containsStormBasedRadiation = containsStormBasedRadiation;
+	   
+   }
+      
    public void setRadiationDamage(Double radiationDamageReceived) {
 	   
 	   this.radiationDamageReceived = radiationDamageReceived;

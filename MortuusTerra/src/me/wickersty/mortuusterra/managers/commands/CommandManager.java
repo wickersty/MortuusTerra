@@ -280,24 +280,6 @@ public class CommandManager {
 					
 				}
 
-				if (args.length == 2 && args[1].equalsIgnoreCase("drought") && (instance.getPermissionsManager().playerHasPermissions(sender, "mt.admin") || sender.isOp() == true)) {
-
-					instance.getLogger().info("Ending Drought");
-					
-					if (instance.getWorldManager().drought.getDroughtActive() == false) {
-						
-						sender.sendMessage(ChatColor.DARK_RED + "[Mortuus Terra] " + ChatColor.GRAY + "There is no drought in this world.");
-					
-						return;
-						
-					}
-					
-					instance.getWorldManager().endDrought();
-					
-					sender.sendMessage(ChatColor.DARK_RED + "[Mortuus Terra] " + ChatColor.GRAY + "Drought Ended");
-					
-				}
-				
 			}
 			
 			if (args[0].equalsIgnoreCase("create")) {
@@ -308,24 +290,6 @@ public class CommandManager {
 					
 				}
 
-				if (args.length == 2 && args[1].equalsIgnoreCase("drought") && (instance.getPermissionsManager().playerHasPermissions(sender, "mt.admin") || sender.isOp() == true)) {
-					
-					instance.getLogger().info("Creating Drought");
-
-					if (instance.getWorldManager().drought.getDroughtActive() == true) {
-						
-						sender.sendMessage(ChatColor.DARK_RED + "[Mortuus Terra] " + ChatColor.GRAY + "There is already a drought in this world.");
-					
-						return;
-						
-					}
-					
-					instance.getWorldManager().createDrought();
-					
-					sender.sendMessage(ChatColor.DARK_RED + "[Mortuus Terra] " + ChatColor.GRAY + "Drought Created");
-					
-				}
-				
 				if (args.length == 2 && args[1].equalsIgnoreCase("crater") && (instance.getPermissionsManager().playerHasPermissions(sender, "mt.admin") || sender.isOp() == true)) {
 
 					final World world = sender.getWorld();

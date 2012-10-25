@@ -28,6 +28,18 @@ public class RadiationManager {
 	    // Create the event here
 		EntityRadiationDamageEvent event = new EntityRadiationDamageEvent(player, radiationDamageReceived);
 
+		if (player.getWorld().hasStorm() == true || player.getWorld().isThundering() == true) {
+			
+			event.setContainsStormBasedRadiation(true);
+			
+		}
+		
+		if ((player.getLocation().getBlock().getType() == Material.WATER) || (player.getLocation().getBlock().getType() == Material.STATIONARY_WATER)) {
+			
+			event.setContainsWaterBasedRadiation(true);
+			
+		}
+		
 		// Call the event
 	    instance.getServer().getPluginManager().callEvent(event);
 		

@@ -29,12 +29,6 @@ public class ConfigManager {
 	public boolean thirstEnabled;
 	public boolean newbieProtectionEnabled;
 	
-	// droughts
-	public boolean droughtsEnabled;
-	public double droughtsChance;
-	public int droughtsMinLength;
-	public int droughtsMaxLength;	
-	
 	// chat
 	public boolean chatFeaturesEnabled;
 	public Integer clearChatRange;
@@ -134,12 +128,6 @@ public class ConfigManager {
 		thirstEnabled = config.getBoolean("settings.additional-features.thirst.enabled");
 		newbieProtectionEnabled = config.getBoolean("settings.additional-features.newbie-protection.enabled");
 				
-		// droughts
-		droughtsEnabled = config.getBoolean("settings.additional-features.droughts.enabled");
-		droughtsChance = config.getDouble("settings.additional-features.droughts.chance");
-		droughtsMinLength = config.getInt("settings.additional-features.droughts.min-length");
-		droughtsMaxLength = config.getInt("settings.additional-features.droughts.max-length");
-		
 		// spawn
 		spawnType = config.getString("settings.worlds.spawn.type");
 		spawnProtectionRange = config.getInt("settings.worlds.spawn.protection-range");	

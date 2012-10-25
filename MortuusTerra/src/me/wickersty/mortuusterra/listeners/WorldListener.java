@@ -12,10 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockGrowEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.weather.WeatherChangeEvent;
-import org.bukkit.event.world.StructureGrowEvent;
 import me.wickersty.mortuusterra.MortuusTerra;
 import me.wickersty.mortuusterra.events.MTTimerEvent;
 import me.wickersty.mortuusterra.objects.SupplyDropObject;
@@ -34,87 +31,6 @@ public class WorldListener implements Listener {
 		this.lastTimestamp = Long.valueOf(0);
 		this.minecraftQuarterDaysPassed = 0;
 		this.minecraftFullDaysPassed = 0;
-		
-	}
-
-	@EventHandler(priority=EventPriority.LOWEST)
-	public void weatherChanges(WeatherChangeEvent event) {
-		
-		if (instance.getConfigManager().isWorldEnabled(event.getWorld().getName()) == false) {
-			
-			return;
-			
-		}
-		
-		if (instance.getConfigManager().droughtsEnabled == false) {
-			
-			return;
-			
-		}
-		
-		if (instance.getWorldManager().drought.getDroughtActive() == false) {
-			
-			return;
-			
-		}
-		
-		// cancel rain due to drought
-		event.setCancelled(true);
-		
-	}
-	
-	@EventHandler(priority=EventPriority.LOWEST)
-	public void cropGrows(BlockGrowEvent event) {
-		
-		if (instance.getConfigManager().isWorldEnabled(event.getBlock().getWorld().getName()) == false) {
-			
-			return;
-			
-		}
-		
-		if (instance.getConfigManager().droughtsEnabled == false) {
-			
-			return;
-			
-		}
-		
-		if (instance.getWorldManager().drought.getDroughtActive() == false) {
-			
-			return;
-			
-		}
-		
-		// cancel crop growth due to drought
-		event.setCancelled(true);
-		
-		// drop crop
-		event.getBlock().breakNaturally();
-		
-	}
-
-	@EventHandler(priority=EventPriority.LOWEST)
-	public void treeGrows(StructureGrowEvent event) {
-		
-		if (instance.getConfigManager().isWorldEnabled(event.getWorld().getName()) == false) {
-			
-			return;
-			
-		}
-
-		if (instance.getConfigManager().droughtsEnabled == false) {
-			
-			return;
-			
-		}
-		
-		if (instance.getWorldManager().drought.getDroughtActive() == false) {
-			
-			return;
-			
-		}
-		
-		// cancel tree growth due to drought
-		event.setCancelled(true);
 		
 	}
 
@@ -283,52 +199,6 @@ public class WorldListener implements Listener {
 		
 		minecraftQuarterDaysPassed = 0;
 			
-		if (instance.getConfigManager().droughtsEnabled == true) {
-			
-			if (instance.getWorldManager().drought.getDroughtActive() == false) {
-				
-				instance.getLogger().info("Checking if Drought Begins");
-				checkIfDroughtBegins();
-				
-			} else {
-			
-				instance.getLogger().info("Checking if Drought Ends");
-				checkIfDroughtEnds();
-				
-			}
-
-		}
-				
 	}
 	
-	public void checkIfDroughtBegins() {
-		
-		if (Math.random() < instance.getConfigManager().droughtsChance) {
-			
-			instance.getWorldManager().createDrought();
-			
-			minecraftQuarterDaysPassed = 0;
-			minecraftFullDaysPassed = 0;
-			
-		}
-		
-	}
-
-	public void checkIfDroughtEnds() {
-		
-		// another day since drought began
-		instance.getWorldManager().drought.daysSinceDrought++;
-
-		// if drought length is same as days passed, end drought
-		if (instance.getWorldManager().drought.getDroughtLength() >= instance.getWorldManager().drought.daysSinceDrought) {
-			
-			instance.getWorldManager().drought.endDrought();
-			
-			minecraftQuarterDaysPassed = 0;
-			minecraftFullDaysPassed = 0;
-			
-		}
-		
-	}
-
 }
