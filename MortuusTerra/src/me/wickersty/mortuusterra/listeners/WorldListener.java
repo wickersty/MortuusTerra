@@ -14,7 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import me.wickersty.mortuusterra.MortuusTerra;
-import me.wickersty.mortuusterra.events.MTTimerEvent;
+// import me.wickersty.mortuusterra.events.MTTimerEvent;
 import me.wickersty.mortuusterra.objects.SupplyDropObject;
 
 public class WorldListener implements Listener {
@@ -56,6 +56,7 @@ public class WorldListener implements Listener {
 			
 		}
 
+		/*
 		// Create the timer event here
 		MTTimerEvent timerEvent = new MTTimerEvent(instance);
 		timerEvent.setWorld(event.getPlayer().getWorld());
@@ -89,6 +90,7 @@ public class WorldListener implements Listener {
 
 		
 		lastTimestamp = event.getPlayer().getWorld().getFullTime();
+		*/
 		
 	}
 
@@ -122,6 +124,7 @@ public class WorldListener implements Listener {
 	}
 
 	
+	/*
 	@EventHandler(priority=EventPriority.LOWEST)
 	public void timerEvent(MTTimerEvent event) {
 
@@ -164,6 +167,7 @@ public class WorldListener implements Listener {
 		}
 		
 	}
+	*/
 
 	public void deliverSupplyDrop(World world) {
 				

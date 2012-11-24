@@ -1,6 +1,6 @@
 name: MortuusTerra
 main: me.wickersty.mortuusterra.MortuusTerra
-version: 3.16
+version: 3.19
 author: wickersty
 depends: [Vault]
 softdepend: [MultiVerse,Multiverse-Core,My Worlds]
@@ -28,11 +28,11 @@ commands:
     aliases: 
     permission:
     usage: /mt help
-  ?:
-    description: Shows information about player and environment
-    alias: 
-    permission: 
-    usage: /?
+  rads:
+    description: Get the current radiation levels
+    aliases: 
+    permission:
+    usage: /rads
   spawn:
     description: Go to spawn
     aliases: 

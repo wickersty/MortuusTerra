@@ -15,6 +15,23 @@ public class InfoManager {
 		this.instance = instance;
 		
 	}
+
+	public void displayRadiationLevels(Player player) {
+
+		Double radiationDamage = instance.getRadiationManager().calculateRadiationDamage(player);
+		String radiationDamageAsString = radiationDamage.toString();
+		
+		String[] radiationDamageAsArray = radiationDamageAsString.split(".");
+		
+		if (radiationDamageAsArray.length >= 1) {
+			
+			radiationDamageAsString = radiationDamageAsArray[0];
+			
+		}
+		
+		player.sendMessage(ChatColor.WHITE + "Current Radiation Levels: " + ChatColor.GRAY + radiationDamageAsString);
+		
+	}
 	
 	public void displayPlayerInfo(Player player) {
 		

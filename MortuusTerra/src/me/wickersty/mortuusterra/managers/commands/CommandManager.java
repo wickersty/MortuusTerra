@@ -36,30 +36,12 @@ public class CommandManager {
 			}
 			
 		}
-		
-		if (cmd.getName().equalsIgnoreCase("?")) {
+
+		if (cmd.getName().equalsIgnoreCase("rads")) {
 
 			if (args.length == 0) {
 				
-				instance.getInfoManager().displayPlayerInfo(sender);
-				
-			}
-			
-			if (args.length == 1) {
-				
-				if (sender.getName().equalsIgnoreCase(args[0])) {
-					
-					instance.getInfoManager().displayPlayerInfo(sender);
-					
-				} else {
-					
-					if (sender.isOp() == true || instance.getPermissionsManager().playerHasPermissions(sender, "mt.admin") == true) {
-						
-						instance.getInfoManager().displayPlayerInfo(instance.getServer().getPlayer(args[0]));
-						
-					}
-					
-				}
+				instance.getInfoManager().displayRadiationLevels(sender);
 				
 			}
 			

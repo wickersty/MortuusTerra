@@ -1,5 +1,6 @@
 package me.wickersty.mortuusterra;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 import me.wickersty.mortuusterra.listeners.ChatListener;
 import me.wickersty.mortuusterra.listeners.ChunkListener;
@@ -117,6 +118,13 @@ public class MortuusTerra extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(this.geckListener, this);
 		
 		getFileManager().loadFiles();
+		
+		try {
+		    Metrics metrics = new Metrics(this);
+		    metrics.start();
+		} catch (IOException e) {
+		    // Failed to submit the stats :-(
+		}
 		
 		logger.info("|----------|");
 		
